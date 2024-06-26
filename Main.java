@@ -88,7 +88,7 @@ class calculate{
             }while(countDo <= 10);
         }
 
-        if(number1 <= 10 && number2 <= 10) {
+        if(number1 <= 10 && number2 <= 10 && number1 != 0 && number2 != 0) {
             switch (char1) {
                 case '+':
                     result = number1 + number2;
@@ -97,17 +97,8 @@ class calculate{
                     result = number1 * number2;
                     break;
                 case '/':
-                    if(number2 != 0) {
-                            result = number1 / number2;
-                            break;
-                    }else{
-                        if(romNumber1 == null && romNumber2 == null && number1 == 0) {
-                            System.out.println("На ноль делить нельзя");
-                            return;
-                        }else{
-                            break;
-                        }
-                    }
+                    result = number1 / number2;
+                    break;
                 case '-':
                     result = number1 - number2;
                     break;
@@ -116,7 +107,7 @@ class calculate{
                     break;
             }
         }else{
-            System.out.println("Введите число меньше 10");
+            System.out.println("Введите число меньше 10, но больше 0");
         }
 
         if(romNumber1 != null && romNumber2 != null){
