@@ -5,17 +5,23 @@ import java.util.stream.IntStream;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        Scanner scanner = new Scanner(System.in);
-        String sum = scanner.nextLine();
-        while(true){
-            if(sum.length() != 0){
-                calculate calculate = new calculate();
-                calculate.arithmeticOperation(sum);
-                sum = scanner.nextLine();
+        while (true) {
+            Scanner scanner = new Scanner(System.in);
+            String sum = scanner.nextLine();
+            if(!sum.isEmpty()) {
+              calc(sum);
             }else{
                 break;
             }
         }
+
+
+    }
+
+    public static String calc(String input) throws IOException {
+        calculate calculate = new calculate();
+
+        return calculate.arithmeticOperation(input);
     }
 }
 
@@ -26,12 +32,11 @@ class calculate{
     int number2 = 0;
     int result = 0;
     String romNumber2;
-    int [] romNumber = new int[2];
     String romNumber1;
     String [] romNumbersArray = {"ZERO","I","II","III","IV","V","VI","VII","VIII","IX","X","XI","XII","XIII","XIV","XV","XVI","XVII","XVIII","XIX","XX","XXI","XXII","XXIII","XXIV","XXV","XXVI","XXVII","XXVIII","XXIX","XXX","XXXI","XXXII","XXXIII","XXXIV","XXXV","XXXVI","XXXVII","XXXVIII","XXXIX","XL","XLI","XLII","XLIII","XLIV","XLV","XLVI","XLVII","XLVIII","XLIX","L","LI","LII","LIII","LIV","LV","LVI","LVII","LVIII","LIX","LX","LXI","LXII","LXIII","LXIV","LXV","LXVI","LXVII","LXVIII","LXIX","LXX","LXXI","LXXII","LXXIII","LXIV","LXXV","LXXVI","LXXVII","LXXVIII","LXXIX","LXXX","LXXXI","LXXII","LXXXIII","LXXIV","LXXXV","LXXXVI","LXXXVII","LXXXVIII","LXXXIX","XC","XCI","XCII","XCIII","XCIV","XCV","XCVI","XCVII","XCVIII","XCIX","C"};
     String[] arrayRomNumber = new String[2];
 
-    void arithmeticOperation(String operation) throws IOException {
+    String arithmeticOperation(String operation) throws IOException {
         for (int counter = 0; counter < operation.length(); counter++) {
             char i = operation.charAt(counter);
 
@@ -88,7 +93,7 @@ class calculate{
             }while(countDo <= 10);
         }
 
-        if(number1 <= 10 && number2 <= 10 && number1 != 0 && number2 != 0) {
+        if(number1 <= 10 && number2 <= 10 && number1 > 0 && number2 > 0) {
             switch (char1) {
                 case '+':
                     result = number1 + number2;
@@ -97,8 +102,8 @@ class calculate{
                     result = number1 * number2;
                     break;
                 case '/':
-                    result = number1 / number2;
-                    break;
+                        result = number1 / number2;
+                        break;
                 case '-':
                     result = number1 - number2;
                     break;
@@ -107,7 +112,8 @@ class calculate{
                     break;
             }
         }else{
-            System.out.println("Введите число меньше 10, но больше 0");
+            //System.out.println("Введите число меньше 10 и больше 0");
+            throw new IOException();
         }
 
         if(romNumber1 != null && romNumber2 != null){
@@ -122,6 +128,7 @@ class calculate{
         }else if(romNumber1 == null || romNumber2 == null){//Калькулятор умеет работать или с арабскими или с римскими цифрами
             throw new IOException();
         }
+        return String.valueOf(result);
     }
 }
 
