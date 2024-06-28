@@ -69,7 +69,7 @@ class calculate{
 
                 }
             }else if((i == '+') || (i == '-') || (i == '*') || (i == '/')){
-                if (char1 == " ") {
+                if (char1 == ' ') {
                     char1 = i;
                 }else{
                     throw new IOException();
